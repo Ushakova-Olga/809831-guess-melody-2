@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/welcome-screen";
+import WelcomeScreen from "./components/welcome-screen";
 
 const init = () => {
   const settings = {
@@ -9,7 +9,7 @@ const init = () => {
   };
 
   ReactDOM.render(
-      <App
+      <WelcomeScreen
         errorCount={settings.errorCount}
         gameTime={settings.gameTime}
       />,
