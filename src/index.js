@@ -1,20 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import WelcomeScreen from "./components/welcome-screen/welcome-screen.jsx";
+import App from "./components/app/app.jsx";
+import questions from "./mocks/questions.js";
 
-const init = () => {
+const init = (gameQuestions) => {
   const settings = {
-    gameTime: 4,
-    errorCount: 7,
+    gameTime: 5,
+    errorCount: 3,
   };
 
   ReactDOM.render(
-      <WelcomeScreen
+      <App
         errorCount={settings.errorCount}
-        time={settings.gameTime}
+        gameTime={settings.gameTime}
+        questions={gameQuestions}
       />,
       document.querySelector(`#root`)
   );
 };
 
-init();
+init(questions);
