@@ -2,6 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import QuestionGenre from '../question-genre/question-genre';
+import questions from "../../mocks/questions.js";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -11,26 +12,7 @@ it(`Question genre correctly pressed button`, () => {
   });
   const componentQuestionGenre = mount(<QuestionGenre
     screenIndex={1}
-    question={{type: `genre`,
-      genre: `rock`,
-      answers: [
-        {
-          src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
-          genre: `rock`,
-        },
-        {
-          src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
-          genre: `pop`,
-        },
-        {
-          src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
-          genre: `jazz`,
-        },
-        {
-          src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
-          genre: `rock`,
-        },
-      ]}}
+    question={questions[0]}
     onAnswer={onAnswerClick}
   />);
 
