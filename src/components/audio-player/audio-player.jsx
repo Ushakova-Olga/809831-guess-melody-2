@@ -40,25 +40,27 @@ class AudioPlayer extends React.PureComponent {
     const {src} = this.props;
     const audio = this._audioRef.current;
 
-    audio.src = src;
+    if (audio) {
+      audio.src = src;
 
-    audio.oncanplaythrough = () => this.setState({
-      isLoading: false,
-    });
-
-    audio.onplay = () => {
-      this.setState({
-        isPlaying: true,
+      audio.oncanplaythrough = () => this.setState({
+        isLoading: false,
       });
-    };
 
-    audio.onpause = () => this.setState({
-      isPlaying: false,
-    });
+      audio.onplay = () => {
+        this.setState({
+          isPlaying: true,
+        });
+      };
 
-    audio.ontimeupdate = () => this.setState({
-      progress: audio.currentTime
-    });
+      audio.onpause = () => this.setState({
+        isPlaying: false,
+      });
+
+      audio.ontimeupdate = () => this.setState({
+        progress: audio.currentTime
+      });
+    }
   }
 
   componentDidUpdate() {

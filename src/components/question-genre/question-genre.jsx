@@ -9,6 +9,7 @@ class QuestionGenre extends React.PureComponent {
     this.state = {
       activePlayer: -1,
     };
+    this.checkedInputs = [];
   }
 
   render() {
@@ -18,11 +19,15 @@ class QuestionGenre extends React.PureComponent {
       genre,
     } = question;
 
+    answers.forEach(() => {
+      this.checkedInputs.push(false);
+    });
+
     return <section className="game__screen">
       <h2 className="game__title">Выберите {genre} треки</h2>
       <form className="game__tracks" onSubmit={(evt) => {
         evt.preventDefault();
-        onAnswer();
+        onAnswer(this.checkedInputs);
       }}>
         {answers.map((it, i) => <div className="track" key={`answer-${genre}${i}`}>
           <AudioPlayer
@@ -33,7 +38,9 @@ class QuestionGenre extends React.PureComponent {
             })}
           />
           <div className="game__answer">
-            <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${genre}${i}`} id={`answer-${genre}${i}`}/>
+            <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${genre}${i}`} id={`answer-${genre}${i}`} onChange={() => {
+              this.checkedInputs[i] = true;
+            }}/>
             <label className="game__check" htmlFor={`answer-${genre}${i}`}>
               Отметить
             </label>
@@ -47,7 +54,7 @@ class QuestionGenre extends React.PureComponent {
 }
 
 QuestionGenre.propTypes = {
-  onAnswer: PropTypes.func.isRequired,
+  onAnswer: PropTypes.func,
   question: PropTypes.shape({
     answers: PropTypes.arrayOf(PropTypes.shape({
       src: PropTypes.string.isRequired,

@@ -29,9 +29,9 @@ class QuestionArtist extends React.PureComponent {
         />
       </div>
 
-      <form className="game__artist" onChange={onAnswer}>
-        {answers.map((it, i) => <div className="artist" key={`answer-${song.artist}${i}`}>
-          <input className="artist__input visually-hidden" type="radio" name="answer" value={`artist-${i}`} id={`artist-${i}`} />
+      <form className="game__artist">
+        {answers.map((it, i, arr) => <div className="artist" key={`answer-${song.artist}${i}`}>
+          <input className="artist__input visually-hidden" type="radio" name="answer" value={`artist-${i}`} id={`artist-${i}`} onChange={() => onAnswer(arr[i].artist)}/>
           <label className="artist__name" htmlFor={`artist-${i}`}>
             <img className="artist__picture" src={it.picture} alt={it.artist} />
             {it.artist}
@@ -39,11 +39,11 @@ class QuestionArtist extends React.PureComponent {
         </div>)}
       </form>
     </section>;
-  };
-};
+  }
+}
 
 QuestionArtist.propTypes = {
-  onAnswer: PropTypes.func.isRequired,
+  onAnswer: PropTypes.func,
   question: PropTypes.shape({
     answers: PropTypes.arrayOf(PropTypes.shape({
       artist: PropTypes.string.isRequired,

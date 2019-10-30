@@ -20,21 +20,3 @@ const init = (gameQuestions) => {
 };
 
 init(questions);
-
-/*const gameSettings = {
-  gameTime: 5,
-  errorCount: 3,
-};
-
-const init = (gameQuestions) => {
-  const {errorCount, gameTime} = gameSettings;
-
-  ReactDOM.render(<App
-      errorCount={errorCount}
-      gameTime={gameTime}
-      questions={gameQuestions}
-    />,
-    document.querySelector(`.main`));
-};
-
-init(questions);*/
