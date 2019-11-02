@@ -1,7 +1,11 @@
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom";
+
 import App from "./components/app/app.jsx";
 import questions from "./mocks/questions.js";
+import {reducer} from "./reducer";
 
 const init = (gameQuestions) => {
   const settings = {
@@ -9,13 +13,17 @@ const init = (gameQuestions) => {
     errorCount: 3,
   };
 
-  ReactDOM.render(
+  const store = createStore(reducer);
+
+  ReactDOM.render(<Provider store={store}>
       <App
         errorCount={settings.errorCount}
         gameTime={settings.gameTime}
         questions={gameQuestions}
-      />,
-      document.querySelector(`#root`)
+      />
+    </Provider>,
+    document.querySelector(`.main`)
+    //document.querySelector(`#root`)
   );
 };
 
