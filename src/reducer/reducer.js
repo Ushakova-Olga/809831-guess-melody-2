@@ -13,7 +13,7 @@ const isGenreAnswerCorrect = (userAnswer, question) => (
 const initialState = {
   step: -1,
   mistakes: 0,
-  time: TIME_MINUTES * 60 * 1000,
+  gameTime: TIME_MINUTES * 60 * 1000,
   gameTimer: null
 };
 
@@ -79,7 +79,7 @@ const reducer = (state = initialState, action) => {
 
     case `DECREMENT_TIME`:
       return Object.assign({}, state, {
-        time: state.time - action.payload
+        gameTime: state.gameTime - action.payload
       });
 
     case `REGISTRATE_TIMER`: return Object.assign({}, state, {
@@ -88,7 +88,7 @@ const reducer = (state = initialState, action) => {
 
     case `RESET`:
       clearInterval(state.gameTimer);
-      return Object.assign({}, initialAppState);
+      return Object.assign({}, initialState);
   }
 
   return state;

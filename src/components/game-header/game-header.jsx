@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Timer from "../timer/timer.jsx";
 
-const GameHeader = ({mistakes, gameTime}) => {
+const GameHeader = ({mistakes, gameTime, onTimeUpdate, onTimeEnd, registrateTimer}) => {
   return <header className="game__header">
     <a className="game__back" href="#">
       <span className="visually-hidden">Сыграть ещё раз</span>
@@ -13,7 +13,7 @@ const GameHeader = ({mistakes, gameTime}) => {
       <circle className="timer__line" cx="390" cy="390" r="370" style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}} />
     </svg>
 
-    <timer time={gameTime} onTimeUpdate={onTimeUpdate} onTimeEnd={onTimeEnd} registrateTimer={registrateTimer} />
+    <Timer time={gameTime} onTimeUpdate={onTimeUpdate} onTimeEnd={onTimeEnd} registrateTimer={registrateTimer} />
 
     <div className="game__mistakes">
       {new Array(mistakes).fill(``).map(() =>

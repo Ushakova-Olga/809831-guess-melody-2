@@ -11,12 +11,12 @@ import {ActionCreator} from "../../reducer/reducer.js";
 
 class App extends React.PureComponent {
   render() {
-    const {questions, step, mistakes, gameTime} = this.props;
+    const {questions, step, mistakes, gameTime, onTimeUpdate, onTimeEnd, registrateTimer} = this.props;
     const currentQuestion = questions[step];
 
     return <section className="game">
 
-      {currentQuestion && <GameHeader mistakes={mistakes} gameTime={gameTime} />}
+            {currentQuestion && <GameHeader mistakes={mistakes} gameTime={gameTime} registrateTimer={registrateTimer} onTimeUpdate={onTimeUpdate} onTimeEnd={onTimeEnd} />}
 
       {this._getScreen(currentQuestion)}
     </section>;
@@ -27,7 +27,7 @@ class App extends React.PureComponent {
       const {gameTime, maxMistakes, onWelcomeScreenClick} = this.props;
 
       return <WelcomeScreen
-        time = {gameTime}
+        gameTime = {gameTime}
         errorCount = {maxMistakes}
         onStartButtonClick = {onWelcomeScreenClick}
       />;
@@ -82,6 +82,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps,
     {
       step: state.step,
       mistakes: state.mistakes,
+      gameTime: state.gameTime
     }
 );
 
@@ -92,6 +93,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.incrementStep(currentQuestionIndex, maxQuestionIndex));
     dispatch(ActionCreator.incrementMistake(userAnswer, question, mistakes, maxMistakes));
   },
+
+  onTimeUpdate: () => dispatch(ActionCreator.decrementTime()),
+
+  onTimeEnd: () => dispatch(ActionCreator.resetGame()),
+
+  registrateTimer: (id) => dispatch(ActionCreator.registrateTimer(id))
 });
 
 export {App};

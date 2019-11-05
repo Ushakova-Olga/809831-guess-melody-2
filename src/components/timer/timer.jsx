@@ -1,5 +1,5 @@
 import React from "react";
-import propTypes from "./prop-types.js";
+import PropTypes from "prop-types";
 
 class Timer extends React.PureComponent {
   constructor(props) {
@@ -37,6 +37,11 @@ class Timer extends React.PureComponent {
   }
 }
 
-GameTime.propTypes = propTypes;
+Timer.propTypes = {
+  time: PropTypes.number.isRequired,
+  onTimeEnd: PropTypes.func.isRequired,
+  onTimeUpdate: PropTypes.func.isRequired,
+  registrateTimer: PropTypes.func.isRequired
+};
 
-export default GameTime;
+export default Timer;
