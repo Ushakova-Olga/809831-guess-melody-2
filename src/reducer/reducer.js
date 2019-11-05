@@ -1,3 +1,5 @@
+const TIME_MINUTES = 5;
+
 const isArtistAnswerCorrect = (userAnswer, question) => (
   userAnswer === question.song.artist
 );
@@ -11,6 +13,8 @@ const isGenreAnswerCorrect = (userAnswer, question) => (
 const initialState = {
   step: -1,
   mistakes: 0,
+  time: TIME_MINUTES * 60 * 1000,
+  gameTimer: null
 };
 
 const ActionCreator = {
@@ -40,6 +44,26 @@ const ActionCreator = {
       payload: answerIsCorrect ? 0 : 1,
     };
   },
+
+    decrementTime: () => {
+    return {
+      type: `DECREMENT_TIME`,
+      payload: 1000
+    };
+  },
+
+  resetGame: () => {
+    return {
+      type: `RESET`
+    };
+  },
+
+  registrateTimer: (id) => {
+    return {
+      type: `REGISTRATE_TIMER`,
+      payload: id
+    };
+  }
 };
 
 
@@ -53,7 +77,18 @@ const reducer = (state = initialState, action) => {
     case `INCREMENT_MISTAKES` : return Object.assign({}, state,
         {mistakes: state.mistakes + action.payload});
 
-    case `RESET` : return Object.assign({}, initialState);
+    case `DECREMENT_TIME`:
+      return Object.assign({}, state, {
+        time: state.time - action.payload
+      });
+
+    case `REGISTRATE_TIMER`: return Object.assign({}, state, {
+      gameTimer: action.payload
+    });
+
+    case `RESET`:
+      clearInterval(state.gameTimer);
+      return Object.assign({}, initialAppState);
   }
 
   return state;
