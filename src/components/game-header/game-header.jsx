@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Timer from "../timer/timer.jsx";
 
 const GameHeader = ({mistakes, gameTime}) => {
   return <header className="game__header">
@@ -12,11 +13,7 @@ const GameHeader = ({mistakes, gameTime}) => {
       <circle className="timer__line" cx="390" cy="390" r="370" style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}} />
     </svg>
 
-    <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-      <span className="timer__mins">{gameTime}</span>
-      <span className="timer__dots">:</span>
-      <span className="timer__secs">00</span>
-    </div>
+    <timer time={gameTime} onTimeUpdate={onTimeUpdate} onTimeEnd={onTimeEnd} registrateTimer={registrateTimer} />
 
     <div className="game__mistakes">
       {new Array(mistakes).fill(``).map(() =>
