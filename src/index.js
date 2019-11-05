@@ -16,13 +16,13 @@ const init = (gameQuestions) => {
   const store = createStore(reducer);
 
   ReactDOM.render(<Provider store={store}>
-      <App
-        maxMistakes={settings.errorCount}
-        gameTime={settings.gameTime}
-        questions={gameQuestions}
-      />
-    </Provider>,
-    document.querySelector(`#root`)
+    <App
+      maxMistakes={settings.errorCount}
+      gameTime={settings.gameTime}
+      questions={gameQuestions}
+    />
+  </Provider>,
+  document.querySelector(`#root`)
   );
 };
 

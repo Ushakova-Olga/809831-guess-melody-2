@@ -11,7 +11,7 @@ const isGenreAnswerCorrect = (userAnswer, question) => (
 const initialState = {
   step: -1,
   mistakes: 0,
-}
+};
 
 const ActionCreator = {
   incrementStep: () => ({
@@ -21,7 +21,7 @@ const ActionCreator = {
 
   incrementMistake: (userAnswer, question, mistakes, maxMistakes) => {
     let answerIsCorrect = false;
-    switch(question.type) {
+    switch (question.type) {
       case `artist`:
         answerIsCorrect = isArtistAnswerCorrect(userAnswer, question);
         break;
@@ -29,36 +29,34 @@ const ActionCreator = {
         answerIsCorrect = isGenreAnswerCorrect(userAnswer, question);
         break;
     }
-    if (!answerIsCorrect && mistakes +1 >= maxMistakes) {
+    if (!answerIsCorrect && mistakes + 1 >= maxMistakes) {
       return {
         type: `RESET`,
-      }
+      };
     }
 
     return {
       type: `INCREMENT_MISTAKES`,
       payload: answerIsCorrect ? 0 : 1,
-    }
+    };
   },
-}
+};
 
 
 const reducer = (state = initialState, action) => {
-  switch(action.type){
-    case `INCREMENT_STEP` :  {
+  switch (action.type) {
+    case `INCREMENT_STEP` : {
       return Object.assign({}, state,
-      {step: state.step + action.payload,
-      });}
+          {step: state.step + action.payload});
+    }
 
     case `INCREMENT_MISTAKES` : return Object.assign({}, state,
-      {mistakes: state.mistakes + action.payload,
-
-    });
+        {mistakes: state.mistakes + action.payload});
 
     case `RESET` : return Object.assign({}, initialState);
   }
 
   return state;
-}
+};
 
 export {ActionCreator, isArtistAnswerCorrect, isGenreAnswerCorrect, reducer};

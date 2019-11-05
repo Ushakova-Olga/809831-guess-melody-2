@@ -4,7 +4,7 @@ describe(`Reducer test group`, () => {
   it(`Reducer correctly increments step`, () => {
     expect(reducer(
         {
-          questionStep: -1,
+          step: -1,
           mistakes: 0,
         },
         {
@@ -12,7 +12,7 @@ describe(`Reducer test group`, () => {
           payload: 1
         }
     )).toEqual({
-      questionStep: 0,
+      step: 0,
       mistakes: 0,
     });
   });
@@ -20,7 +20,7 @@ describe(`Reducer test group`, () => {
   it(`Reducer correctly increments mistakes`, () => {
     expect(reducer(
         {
-          questionStep: 0,
+          step: 0,
           mistakes: 0,
         },
         {
@@ -28,7 +28,7 @@ describe(`Reducer test group`, () => {
           payload: 2
         }
     )).toEqual({
-      questionStep: 0,
+      step: 0,
       mistakes: 2,
     });
   });

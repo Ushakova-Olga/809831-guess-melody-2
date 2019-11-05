@@ -19,7 +19,7 @@ class App extends React.PureComponent {
       {currentQuestion && <GameHeader mistakes={mistakes} gameTime={gameTime} />}
 
       {this._getScreen(currentQuestion)}
-    </section>
+    </section>;
   }
 
   _getScreen(question) {
@@ -33,7 +33,7 @@ class App extends React.PureComponent {
       />;
     }
 
-    const {onUserAnswer, mistakes, maxMistakes, questions, questionStep} = this.props;
+    const {onUserAnswer, mistakes, maxMistakes, questions} = this.props;
     const currentQuestionIndex = questions.indexOf(question);
     const maxQuestionIndex = questions.length;
 
@@ -76,13 +76,13 @@ App.propTypes = {
   step: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   onWelcomeScreenClick: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps,
-  {
-    step: state.step,
-    mistakes: state.mistakes,
-  }
+    {
+      step: state.step,
+      mistakes: state.mistakes,
+    }
 );
 
 const mapDispatchToProps = (dispatch) => ({
