@@ -45,7 +45,7 @@ const ActionCreator = {
     };
   },
 
-    decrementTime: () => {
+  decrementTime: () => {
     return {
       type: `DECREMENT_TIME`,
       payload: 1000

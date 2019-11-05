@@ -16,7 +16,7 @@ class App extends React.PureComponent {
 
     return <section className="game">
 
-            {currentQuestion && <GameHeader mistakes={mistakes} gameTime={gameTime} registrateTimer={registrateTimer} onTimeUpdate={onTimeUpdate} onTimeEnd={onTimeEnd} />}
+      {currentQuestion && <GameHeader mistakes={mistakes} gameTime={gameTime} registrateTimer={registrateTimer} onTimeUpdate={onTimeUpdate} onTimeEnd={onTimeEnd} />}
 
       {this._getScreen(currentQuestion)}
     </section>;
@@ -76,6 +76,9 @@ App.propTypes = {
   step: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   onWelcomeScreenClick: PropTypes.func.isRequired,
+  onTimeUpdate: PropTypes.func.isRequired,
+  onTimeEnd: PropTypes.func.isRequired,
+  registrateTimer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps,

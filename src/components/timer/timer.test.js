@@ -1,16 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import GameHeader from '../game-header/game-header';
+import Timer from "../timer/timer.jsx";
 
-it(`Game header correctly renders`, () => {
+it(`Timer correctly renders`, () => {
   const tree = renderer
-    .create(<GameHeader
-      mistakes={0}
-      gameTime={5000}
-      onTimeUpdate={() => {}}
+    .create(<Timer
+      time={5000}
       onTimeEnd={() => {}}
+      onTimeUpdate={() => {}}
       registrateTimer={() => {}}
     />)
     .toJSON();
+
   expect(tree).toMatchSnapshot();
 });

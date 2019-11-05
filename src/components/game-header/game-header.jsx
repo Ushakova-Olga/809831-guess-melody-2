@@ -25,6 +25,9 @@ const GameHeader = ({mistakes, gameTime, onTimeUpdate, onTimeEnd, registrateTime
 GameHeader.propTypes = {
   mistakes: PropTypes.number.isRequired,
   gameTime: PropTypes.number.isRequired,
+  onTimeUpdate: PropTypes.func.isRequired,
+  onTimeEnd: PropTypes.func.isRequired,
+  registrateTimer: PropTypes.func.isRequired,
 };
 
 export default GameHeader;

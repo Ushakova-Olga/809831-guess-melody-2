@@ -45,7 +45,7 @@ exports[`Game header correctly renders 1`] = `
     <span
       className="timer__mins"
     >
-      5
+      00
     </span>
     <span
       className="timer__dots"
@@ -55,7 +55,7 @@ exports[`Game header correctly renders 1`] = `
     <span
       className="timer__secs"
     >
-      00
+      05
     </span>
   </div>
   <div
