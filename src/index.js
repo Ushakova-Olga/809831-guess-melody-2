@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 
 import App from "./components/app/app.jsx";
 import questions from "./mocks/questions.js";
-import {reducer} from "./reducer";
+import {reducer} from "./reducer/reducer";
 
 const init = (gameQuestions) => {
   const settings = {
@@ -17,13 +17,12 @@ const init = (gameQuestions) => {
 
   ReactDOM.render(<Provider store={store}>
       <App
-        errorCount={settings.errorCount}
+        maxMistakes={settings.errorCount}
         gameTime={settings.gameTime}
         questions={gameQuestions}
       />
     </Provider>,
-    document.querySelector(`.main`)
-    //document.querySelector(`#root`)
+    document.querySelector(`#root`)
   );
 };
 
