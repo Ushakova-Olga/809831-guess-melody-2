@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import WelcomeScreen from "../../components/welcome-screen/welcome-screen.jsx";
 import QuestionArtist from "../../components/question-artist/question-artist.jsx";
 import QuestionGenre from "../../components/question-genre/question-genre.jsx";
+import GameHeader from "../../components/game-header/game-header.jsx";
 
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer.js";
@@ -13,7 +14,12 @@ class App extends React.PureComponent {
     const {questions, step, mistakes, gameTime} = this.props;
     const currentQuestion = questions[step];
 
-    return this._getScreen(currentQuestion);
+    return <section className="game">
+
+      {currentQuestion && <GameHeader mistakes={mistakes} gameTime={gameTime} />}
+
+      {this._getScreen(currentQuestion)}
+    </section>
   }
 
   _getScreen(question) {
