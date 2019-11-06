@@ -8,7 +8,7 @@ Enzyme.configure({adapter: new Adapter()});
 it(`Welcome screen correctly pressed button`, () => {
   const onStartButtonClick = jest.fn();
   const componentWelcomeScreen = shallow(<WelcomeScreen errorCount={7}
-    time={4}
+    gameTime={4}
     onStartButtonClick={onStartButtonClick} />);
 
   const startButton = componentWelcomeScreen.find(`button`);
