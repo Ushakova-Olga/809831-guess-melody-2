@@ -5,10 +5,6 @@ import AudioPlayer from "../../components/audio-player/audio-player.jsx";
 class QuestionArtist extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isPlaying: false,
-    };
   }
 
   render() {
@@ -22,11 +18,7 @@ class QuestionArtist extends React.PureComponent {
     return <section className="game__screen">
       <h2 className="game__title">Кто исполняет эту песню?</h2>
       <div className="game__track" key={`question-${song.artist}`}>
-        <AudioPlayer
-          isPlaying={isPlaying}
-          onPlayButtonClick={() => this.setState({isPlaying: !isPlaying})}
-          src={song.src}
-        />
+        {renderPlayer(song, 0)}
       </div>
 
       <form className="game__artist">
@@ -55,6 +47,7 @@ QuestionArtist.propTypes = {
     }).isRequired,
     type: PropTypes.oneOf([`genre`, `artist`]).isRequired,
   }).isRequired,
+  renderPlayer: PropTypes.func.isRequired,
 };
 
 export default QuestionArtist;

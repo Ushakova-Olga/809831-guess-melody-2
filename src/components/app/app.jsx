@@ -7,7 +7,10 @@ import GameHeader from "../../components/game-header/game-header.jsx";
 
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer.js";
+import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 
+const ArtistQuestionScreenWrapped = withActivePlayer(QuestionArtist);
+const GenreQuestionScreenWrapped = withActivePlayer(QuestionGenre);
 
 class App extends React.PureComponent {
   render() {
@@ -39,7 +42,7 @@ class App extends React.PureComponent {
 
     switch (question.type) {
       case `genre`:
-        return <QuestionGenre
+        return <GenreQuestionScreenWrapped
           question = {question}
           onAnswer = {(userAnswer) => onUserAnswer(
               userAnswer,
@@ -51,7 +54,7 @@ class App extends React.PureComponent {
           )}
         />;
       case `artist`:
-        return <QuestionArtist
+        return <ArtistQuestionScreenWrapped
           question = {question}
           onAnswer = {(userAnswer) => onUserAnswer(
               userAnswer,

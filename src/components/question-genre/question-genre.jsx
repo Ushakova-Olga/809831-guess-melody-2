@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import AudioPlayer from "../../components/audio-player/audio-player.jsx";
 
 class QuestionGenre extends React.PureComponent {
   constructor(props) {
@@ -13,7 +12,7 @@ class QuestionGenre extends React.PureComponent {
   }
 
   render() {
-    const {question, onAnswer} = this.props;
+    const {question, onAnswer, renderPlayer} = this.props;
     const {
       answers,
       genre,
@@ -30,13 +29,7 @@ class QuestionGenre extends React.PureComponent {
         onAnswer(this.checkedInputs);
       }}>
         {answers.map((it, i) => <div className="track" key={`answer-${genre}${i}`}>
-          <AudioPlayer
-            src={it.src}
-            isPlaying={i === this.state.activePlayer}
-            onPlayButtonClick={() => this.setState({
-              activePlayer: this.state.activePlayer === i ? -1 : i
-            })}
-          />
+          {renderPlayer(it, i)}
           <div className="game__answer">
             <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${genre}${i}`} id={`answer-${genre}${i}`} onChange={() => {
               this.checkedInputs[i] = true;
@@ -63,6 +56,7 @@ QuestionGenre.propTypes = {
     genre: PropTypes.oneOf([`rock`, `jazz`, `blues`, `pop`, `folk`]).isRequired,
     type: PropTypes.oneOf([`genre`, `artist`]).isRequired,
   }).isRequired,
+  renderPlayer: PropTypes.func.isRequired,
 };
 
 export default QuestionGenre;
