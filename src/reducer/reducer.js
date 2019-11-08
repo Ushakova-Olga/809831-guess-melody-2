@@ -17,6 +17,19 @@ const initialState = {
   gameTimer: null
 };
 
+const getAnswer = (userAnswer, question) => {
+  let answerIsCorrect = false;
+  switch (question.type) {
+    case `artist`:
+      answerIsCorrect = isArtistAnswerCorrect(userAnswer, question);
+      break;
+    case `genre`:
+      answerIsCorrect = isGenreAnswerCorrect(userAnswer, question);
+      break;
+  }
+  return answerIsCorrect;
+}
+
 const ActionCreator = {
   incrementStep: () => ({
     type: `INCREMENT_STEP`,
@@ -24,15 +37,8 @@ const ActionCreator = {
   }),
 
   incrementMistake: (userAnswer, question, mistakes, maxMistakes) => {
-    let answerIsCorrect = false;
-    switch (question.type) {
-      case `artist`:
-        answerIsCorrect = isArtistAnswerCorrect(userAnswer, question);
-        break;
-      case `genre`:
-        answerIsCorrect = isGenreAnswerCorrect(userAnswer, question);
-        break;
-    }
+    let answerIsCorrect = getAnswer(userAnswer, question);
+
     if (!answerIsCorrect && mistakes + 1 >= maxMistakes) {
       return {
         type: `RESET`,
@@ -74,21 +80,27 @@ const reducer = (state = initialState, action) => {
           {step: state.step + action.payload});
     }
 
-    case `INCREMENT_MISTAKES` : return Object.assign({}, state,
+    case `INCREMENT_MISTAKES` : {
+      return Object.assign({}, state,
         {mistakes: state.mistakes + action.payload});
+    }
 
-    case `DECREMENT_TIME`:
+    case `DECREMENT_TIME`: {
       return Object.assign({}, state, {
         gameTime: state.gameTime - action.payload
       });
+    }
 
-    case `REGISTRATE_TIMER`: return Object.assign({}, state, {
-      gameTimer: action.payload
-    });
+    case `REGISTRATE_TIMER`: {
+      return Object.assign({}, state, {
+        gameTimer: action.payload
+      });
+    }
 
-    case `RESET`:
+    case `RESET`: {
       clearInterval(state.gameTimer);
       return Object.assign({}, initialState);
+    }
   }
 
   return state;
