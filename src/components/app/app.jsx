@@ -8,9 +8,11 @@ import GameHeader from "../../components/game-header/game-header.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer.js";
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
+import withAnswer from "../../hocs/with-answer/with-answer";
 
 const ArtistQuestionScreenWrapped = withActivePlayer(QuestionArtist);
-const GenreQuestionScreenWrapped = withActivePlayer(QuestionGenre);
+const GenreQuestionScreenWrapped = withAnswer(withActivePlayer(QuestionGenre));
+
 
 class App extends React.PureComponent {
   render() {

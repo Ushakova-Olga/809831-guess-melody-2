@@ -27,8 +27,9 @@ const getAnswer = (userAnswer, question) => {
       answerIsCorrect = isGenreAnswerCorrect(userAnswer, question);
       break;
   }
+
   return answerIsCorrect;
-}
+};
 
 const ActionCreator = {
   incrementStep: () => ({
@@ -82,7 +83,7 @@ const reducer = (state = initialState, action) => {
 
     case `INCREMENT_MISTAKES` : {
       return Object.assign({}, state,
-        {mistakes: state.mistakes + action.payload});
+          {mistakes: state.mistakes + action.payload});
     }
 
     case `DECREMENT_TIME`: {

@@ -9,6 +9,7 @@ it(`Question artist screen correctly renders`, () => {
     .create(<QuestionArtist
       screenIndex={3}
       question={questions[2]}
+      renderPlayer={() => {}}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

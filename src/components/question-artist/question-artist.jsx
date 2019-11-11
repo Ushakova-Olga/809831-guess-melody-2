@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import AudioPlayer from "../../components/audio-player/audio-player.jsx";
 
 class QuestionArtist extends React.PureComponent {
   constructor(props) {
@@ -8,8 +7,7 @@ class QuestionArtist extends React.PureComponent {
   }
 
   render() {
-    const {question, onAnswer} = this.props;
-    const {isPlaying} = this.state;
+    const {question, renderPlayer, onAnswer} = this.props;
     const {
       answers,
       song,

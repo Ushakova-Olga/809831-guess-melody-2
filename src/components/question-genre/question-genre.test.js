@@ -9,6 +9,7 @@ it(`Question genre screen correctly renders`, () => {
     .create(<QuestionGenre
       screenIndex={1}
       question={questions[0]}
+      renderPlayer={() => {}}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

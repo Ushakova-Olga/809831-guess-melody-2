@@ -8,10 +8,13 @@ Enzyme.configure({adapter: new Adapter()});
 
 it(`Question artist correctly pressed button`, () => {
   const onAnswerClick = jest.fn();
+  const renderPlayer = jest.fn();
+
   const componentQuestionArtist = shallow(<QuestionArtist
     screenIndex={3}
     question={questions[2]}
     onAnswer={onAnswerClick}
+    renderPlayer={renderPlayer}
   />);
 
   componentQuestionArtist.find(`.artist__input`).first().simulate(`change`);
