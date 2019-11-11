@@ -8,7 +8,7 @@ class AudioPlayer extends React.PureComponent {
   }
 
   render() {
-    const {audioRef, isLoading, isPlaying, onPlayButtonClick, id} = this.props;
+    const {audioRef, isLoading, isPlaying} = this.props;
 
     return (
       <React.Fragment>
@@ -35,8 +35,11 @@ class AudioPlayer extends React.PureComponent {
 
 AudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
   src: PropTypes.string.isRequired,
+  audioRef: PropTypes.shape({current: PropTypes.instanceOf(Element)}),
+  id: PropTypes.number.isRequired,
 };
 
 export default AudioPlayer;
